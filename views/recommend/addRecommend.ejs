@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    <!-- css -->
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"/>
+    <!-- 提示 -->
+    <link rel="stylesheet" type="text/css" href="/lib/DialogJS/style/dialog.css">
+    <!-- 确认提示 -->
+    <link type="text/css" rel="stylesheet" href="/lib/jQueryZdialog/css/zdialog.css" />
+    <!-- 3d -->
+    <link rel="stylesheet" type="text/css" href="/lib/jQuery-css3d/css/style.css">
+
+    <!-- script -->
+    <script src="/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 结果提示层 -->
+    <script src="/lib/DialogJS/javascript/zepto.min.js"></script>
+    <script type="text/javascript" src="/lib/DialogJS/javascript/dialog.min.js"></script>
+    <!-- 确定弹出层 -->
+    <script type="text/javascript" src="/lib/jQueryZdialog/js/zdialog.js"></script>
+     <!-- 3d翻转 -->
+     <script src='/lib/jQuery-css3d/prefixfree.min.js'></script>
+    <!-- 自定义js -->
+    <script src="/javascripts/base.js"></script>
+    <script src="/javascripts/recommend.js"></script>
+    <title>推荐漫画</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧菜单栏 -->
+            <div class="col-sm-2" style="border-right:1px solid #ccc" id="left">
+                <%- include ../public/left.ejs%>
+            </div>
+            <!-- 右侧详情栏 -->
+            <div class="col-sm-10">
+                <ol class="breadcrumb">
+                        <li>推荐管理</li>
+                        <li class="active">推荐漫画</li>
+                        <li class="pull-right">
+                            <div class="btn-group" style="cursor:pointer">
+                                <span class="dropdown-toggle" data-toggle="dropdown"><strong><%=session.manager.manager_name%></strong>
+                                    <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu" style="min-width:80px">
+                                    <li><a href="/users/logout">注销</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                </ol>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        推荐漫画
+                       
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group" id="recommendText">
+                                <label for="recommendReason" class="col-sm-2 control-label">推荐原因</label>
+                                <div class="col-sm-8">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="recommendReason">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button" id="submitRecommend">提交推荐</button>
+                                                <input type="hidden" id="selectCartoonId"/>
+                                            </span>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cartoonList" class="col-sm-2 control-label">未推荐漫画</label>
+                                <div class="col-sm-8">
+                                    <%for(var i = 0; i <  msg.text.length;i++){%>
+                                    <div class="jq22-content">
+                                        <div class="flip-3d">
+                                            <figure>
+                                            <img src="<%=msg.text[i].cartoon_cover%>" alt="">
+                                            <figcaption>
+                                                <p style="color:red" title="<%=msg.text[i].author%>著"
+                                                data-container="body" data-toggle="popover" data-placement="right"
+                                                data-content="<%=msg.text[i].cartoon_desc%>..."><%=msg.text[i].cartoon_name%></p>
+                                                <button class="btn btn-danger" onclick="setInput('<%=msg.text[i]['_id']%>','<%=msg.text[i]['cartoon_name']%>')">推荐</button>
+                                            </figcaption>
+                                            </figure>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+.list-group-item{
+  border: none;
+  /* border-bottom: 1px solid #ddd; */
+}
+
+.col-sm-2{
+  margin: 0;
+  padding: 0;
+}
+
+
+.left {
+  height: 100%;
+  width: auto;
+}
+
+li{
+  list-style: none;
+}
+
+td, th{
+  text-align: center;
+}

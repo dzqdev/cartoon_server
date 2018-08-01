@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/chapter/addChapter" method="post" enctype='multipart/form-data'>
+        漫画标题<input type="text" name="chapter_title"/><br/>
+        <input type="hidden" name="cartoonId" value="5af98590f56f0f3f549a556b"/><br/>
+        选择zip文件<input name="chapter" id='upfile' type='file'/><br>
+        <input type="submit" value="上传"/>
+    </form>
+</body>
+</html>

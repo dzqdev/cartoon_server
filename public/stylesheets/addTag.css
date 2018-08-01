@@ -1,0 +1,50 @@
+.item{
+    width: 50px;
+    height: 20px;
+    float: left;
+    margin-right: 30px;
+}
+
+.item input{
+    float: left
+}
+
+.option-primary{
+    background-color: #337ab7;
+    width: 30px;
+    height: 14px;
+    float: right;
+    margin-top: 3px;
+}
+
+.option-warning{
+    background-color: #f0ad4e;
+    width: 30px;
+    height: 14px;
+    float: right;
+    margin-top: 3px;
+}
+
+.option-danger{
+    background-color: #d9534f;
+    width: 30px;
+    height: 14px;
+    float: right;
+    margin-top: 3px;
+}
+
+.option-success{
+    background-color: #5cb85c;
+    width: 30px;
+    height: 14px;
+    float: right;
+    margin-top: 3px;
+}
+
+.option-info{
+    background-color: #5bc0de;
+    width: 30px;
+    height: 14px;
+    float: right;
+    margin-top: 3px;
+}

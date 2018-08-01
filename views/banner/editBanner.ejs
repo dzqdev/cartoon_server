@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"/>
+    <!-- 文件上传 -->
+    <link rel="stylesheet" href="/lib/bootstrap-fileinput-master/css/fileinput.min.css">
+    <!-- 提示 -->
+    <link rel="stylesheet" type="text/css" href="/lib/DialogJS/style/dialog.css">
+    <link type="text/css" rel="stylesheet" href="/lib/jQueryZdialog/css/zdialog.css" />
+    <!-- 鼠标悬停 -->
+    <link rel="stylesheet" type="text/css" href="/lib/hover/css/stylesCode.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/lib/hover/css/myStyle.css"> -->
+    <!-- css -->
+    <link rel="stylesheet" href="/stylesheets/base.css">
+
+    <!-- script -->
+    <script src="/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 文件上传 -->
+    <script src="/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
+    <script src="/lib/bootstrap-fileinput-master/js/fileinput_locale_zh.js"></script>
+    <!-- 提示 -->
+    <script src="/lib/DialogJS/javascript/zepto.min.js"></script>
+    <script type="text/javascript" src="/lib/DialogJS/javascript/dialog.min.js"></script>
+    <script type="text/javascript" src="/lib/jQueryZdialog/js/zdialog.js"></script>
+    <!-- 鼠标悬停 -->
+    <!-- <script src="/lib/jQuery-hover/js/modernizr.custom.js"></script> -->
+
+    <!-- 自定义js -->
+    <script src="/javascripts/base.js"></script>
+    <script src="/javascripts/banner.js"></script>
+    <title>添加漫画</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧菜单栏 -->
+            <div class="col-sm-2" style="border-right:1px solid #ccc" id="left">
+                <%- include ../public/left.ejs%>
+            </div>
+            <!-- 右侧详情栏 -->
+            <div class="col-sm-10">
+                <ol class="breadcrumb">
+                        <li>轮播管理</li>
+                        <li class="active">修改轮播</li>
+                        <li class="pull-right">
+                            <div class="btn-group" style="cursor:pointer">
+                                <span class="dropdown-toggle" data-toggle="dropdown"><strong><%=session.manager.manager_name%></strong>
+                                    <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu" style="min-width:80px">
+                                    <li><a href="/users/logout">注销</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                </ol>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        修改轮播
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">图片说明文字</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="banner_title" value="<%=msg['text']['banner_title']%>" placeholder="20个字以内">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="link" class="col-sm-2 control-label">图片链接</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="link" value="<%=msg['text']['link']%>" placeholder="图片链接">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploadBanner" class="col-sm-2 control-label">图片</label>
+                                <div class="col-sm-8" id="uploadImageContainer">
+                                    <input type="hidden" id="banner_url">
+                                    <input type="hidden" id="bannerId" value="<%=msg['text']['_id']%>">
+                                    <input id="uploadBanner" type="file">
+                                </div>
+                                <div class="col-sm-8" id="displayImageContainer">
+                                        <div class="btn15" style="width:300px;">
+                                            <img src="<%=msg['text']['banner_url']%>" alt="">
+                                            <div class="ovrly"></div>
+                                            <div class="buttons">
+                                                <a href="javascript:void(0)" id="deleteImage" class="fa fa-link"></a>
+                                                <a href="javascript:void(0)" class="fa fa-search"></a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="is_dispaly" class="col-sm-2 control-label">是否显示</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="is_display">
+                                        <%if(msg['text']['is_display'] == true){%>
+                                            <option value="true" selected>是</option>
+                                            <option value="false">否</option>
+                                        <%}else{%>
+                                            <option value="false" selected>否</option>
+                                            <option value="true">是</option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <button type="submit" class="btn btn-default" id="updateBanner">修改</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

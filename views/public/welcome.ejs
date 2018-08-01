@@ -1,0 +1,27 @@
+<div class="col-sm-12">
+        <ol class="breadcrumb">
+                <li>首页</li>
+                <li class="active">欢迎</li>
+                <li class="pull-right">
+                        <div class="btn-group" style="cursor:pointer">
+                        <span class="dropdown-toggle" data-toggle="dropdown"><strong><%=session.manager.manager_name%></strong>
+                                <span class="caret"></span>
+                        </span>
+                        <ul class="dropdown-menu" role="menu" style="min-width:80px">
+                                <li><a href="/api/users/logout">注销</a></li>
+                        </ul>
+                        </div>
+                </li>
+        </ol>
+        <div class="panel panel-default">
+                <%=msg%>
+                <div class="jumbotron">
+                        <h1>欢迎登陆页面！</h1>
+                        <p>这是一个超大屏幕（Jumbotron）的实例。</p>
+                        <p><a class="btn btn-primary btn-lg" role="button">
+                        学习更多</a>
+                        </p>
+                </div>
+                <div id="main" style="width: 600px;height:400px;"></div>
+        </div>
+</div>

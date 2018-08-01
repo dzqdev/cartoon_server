@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    <!-- css -->
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/lib/jqueryPagination/css/jquery.pagination.css">
+    <link href="/lib/lightbox2-master/dist/css/lightbox.css" rel="stylesheet">
+    <!-- 提示 -->
+    <link type="text/css" rel="stylesheet" href="/lib/jQueryZdialog/css/zdialog.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/DialogJS/style/dialog.css">
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    
+    <!-- script -->
+    <script src="/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/lib/jqueryPagination/js/jquery.pagination.min.js"></script>
+    <script src="/lib/lightbox2-master/dist/js/lightbox.min.js"></script>
+    <!-- 提示 -->
+    <script type="text/javascript" src="/lib/DialogJS/javascript/zepto.min.js"></script>
+    <script type="text/javascript" src="/lib/DialogJS/javascript/dialog.min.js"></script>
+
+    <script type="text/javascript" src="/lib/jQueryZdialog/js/zdialog.js"></script>
+    <script type="text/javascript" src="/javascripts/base.js"></script>
+    <script type="text/javascript" src="/javascripts/banner.js"></script>
+    <style>
+         td{
+        　　white-space: nowrap;      
+        　　overflow: hidden;
+        　　text-overflow: ellipsis;
+            width: 30px;
+            overflow:hidden;
+            height: 50px;
+            vertical-align: middle !important;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            $("[data-toggle='tooltip']").tooltip();
+        }
+    </script>
+    <title>所有轮播</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧菜单栏 -->
+            <div class="col-sm-2" style="border-right:1px solid #ccc" id="left">
+                <%- include ../public/left.ejs%>
+            </div>
+            <!-- 右侧详情栏 -->
+            <div class="col-sm-10">
+                <ol class="breadcrumb" style="padding-right:80px">
+                        <li>轮播管理</li>
+                        <li class="active">查看轮播</li>
+                        <li class="pull-right">
+                            <div class="btn-group" style="cursor:pointer">
+                                <span class="dropdown-toggle" data-toggle="dropdown"><strong><%=session.manager.manager_name%></strong>
+                                    <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu" style="min-width:80px">
+                                    <li><a href="/users/logout">注销</a></li>
+                                </ul>
+                            </div>
+                    </li>
+                    </li>
+                </ol>
+                <div class="panel panel-default">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <th>描述</th>
+                            <th>链接</th>
+                            <th>图片</th>
+                            <!-- <th>漫画类别</th> -->
+                            <th>是否显示</th>
+                            <th>操作</th>
+                        </thead>
+
+                        <tbody class="cartoon_img">
+                            <%if(msg.text.length <= 0 ){%>
+                                <tr>
+                                    <td colspan="5">还没有添加轮播图哦！</td>
+                                </tr>
+                            <%}else{%>
+                                <%for(var i = 0; i < msg.text.length; i++){%>
+                                    <tr>
+                                        <td><%= msg.text[i]['banner_title']%></td>
+                                        <td style="width:30px;word-wrap:break-word;">
+                                            <%= msg.text[i]['link'].substring(0,20)%>
+                                        </td>
+                                        <td>
+                                                <a href="<%=msg.text[i]['banner_url']%>" data-lightbox="image-1" data-title="<%= msg.text[i]['banner_title']%>">
+                                                        <img src="<%=msg.text[i]['banner_url']%>" alt="" style="width:50px;height:auto;">
+                                                </a>
+                                        </td>
+                                        <td>
+                                            <%if(msg.text[i]['is_display'] == true){%>
+                                                是
+                                            <%}else{%>
+                                                否
+                                            <%}%>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-sm btn-warning" href="/api/banner/editBanner/<%=msg.text[i]['_id']%>">
+                                                <span class="glyphicon glyphicon glyphicon-pencil"></span>
+                                                修改
+                                            </a>
+                                            <button class="btn btn-sm btn-danger" id="delete">
+                                                <input type="hidden" id="bannerId" value="<%=msg.text[i]['_id']%>"/>
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                                删除
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <%}%>
+                            <%}%>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <nav aria-label="Page navigation">  
+                    <ul class="pagination">  
+                        <li>  
+                        <a href="#" aria-label="Previous">  
+                            <span aria-hidden="true">«</span>  
+                        </a>  
+                        </li>
+                        <%for(var p = 0; p < Math.floor(msg['count']/5) + 1;p++){%>
+                            <li><a href="/cartoon/allCartoon/<%=p+1%>"><%=p+1%></a></li>
+                        <%}%>  
+                        <li>  
+                        <a href="#" aria-label="Next">  
+                            <span aria-hidden="true">»</span>  
+                        </a>  
+                        </li>  
+                    </ul>  
+                </nav> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+div.flip-3d { 
+	  perspective: 1200px; width: 15%; margin-right:3%;float: left; max-height:200px;overflow:hidden
+	}
+	div.flip-3d figure { 
+	  position: relative; 
+	  transform-style: preserve-3d; 
+	  transition: 1s transform;
+	  font-size: 1.6rem; 
+	}
+	div.flip-3d figure img { 
+	  width: 100%; height: auto; 
+	}
+	div.flip-3d figure figcaption { 
+	  position: absolute; 
+	  width: 100%; height: 100%; top: 0; 
+	  transform: rotateY(.5turn) translateZ(1px); 
+	  background: rgba(255,255,255,0.9); 
+	  text-align: center; 
+	  padding-top: 45%; 
+	  opacity: 0.6; 
+	  transition: 1s .5s opacity; 
+	}
+	div.flip-3d:hover figure { transform: rotateY(.5turn); }
+	div.flip-3d:hover figure figcaption { opacity: 1; }
+	div.flip-3d figure:after { 
+	  content: " "; display: block;
+	  height: 8vw; width: 100%; 
+	  transform: rotateX(90deg); 
+	  background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%); 
+	}
+
+	@media screen and (max-width: 800px) { 
+	  div#flip-3d { perspective-origin: center top; }
+		div#flip-3d figure { 
+	    float: none; 
+	    width: 50%; 
+	    margin: 0 auto; 
+	    margin-bottom: 12vw; 
+	  }
+	  div.flip-3d figure figcaption{font-size: 0.8rem;}
+		div#flip-3d figure:last-child { display: none; }
+	}

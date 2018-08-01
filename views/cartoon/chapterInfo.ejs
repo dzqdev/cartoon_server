@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    <!-- css -->
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    
+    <!-- script -->
+    <script src="/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/javascripts/base.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="myCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+                <%for(let i = 0; i < eval ("(" + msg.text + ")").chapter_content.length;i++){%>
+                    <%if(i == 0){%>
+                        <li data-target="#myCarousel" data-slide-to="<%=i%>" class="active"></li>
+                    <%}else{%>
+                        <li data-target="#myCarousel" data-slide-to="<%=i%>"></li>
+                    <%}%>
+                <%}%>
+            </ol>   
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                    <%for(let j = 0; j < eval ("(" + msg.text + ")").chapter_content.length;j++){%>
+                        <%if(j == 0){%>
+                            <div class="item active">
+                                    <img src="<%=eval ("(" + msg.text + ")").chapter_content[j]['image_url']%>" alt="slide">
+                                </div>
+                        <%}else{%>
+                            <div class="item">
+                                    <img src="<%=eval ("(" + msg.text + ")").chapter_content[j]['image_url']%>" alt="slide">
+                            </div>
+                        <%}%>
+                    <%}%>
+            </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="carousel-control left" href="#myCarousel" 
+           data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true" class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="carousel-control right" href="#myCarousel" 
+           data-slide="next">&rsaquo;</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" /> 
+    <!-- css -->
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/lib/bootstrap-fileinput-master/css/fileinput.min.css">
+    <!-- 提示 -->
+    <link rel="stylesheet" type="text/css" href="/lib/DialogJS/style/dialog.css">
+    <link type="text/css" rel="stylesheet" href="/lib/jQueryZdialog/css/zdialog.css" />
+    <!-- 图片显示层 -->
+    <link rel="stylesheet" type="text/css" href="/lib/hover/css/stylesCode.css"/>
+
+    <!-- script -->
+    <script src="/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/lib/bootstrap-fileinput-master/js/fileinput.min.js"></script>
+    <script src="/lib/bootstrap-fileinput-master/js/fileinput_locale_zh.js"></script>
+    <!-- 提示 -->
+    <script src="/lib/DialogJS/javascript/zepto.min.js"></script>
+    <script type="text/javascript" src="/lib/DialogJS/javascript/dialog.min.js"></script>
+    <script type="text/javascript" src="/lib/jQueryZdialog/js/zdialog.js"></script>
+    <!-- 自定义js -->
+    <script src="/javascripts/base.js"></script>
+    <script src="/javascripts/cartoon.js"></script>
+    <title>编辑漫画</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧菜单栏 -->
+            <div class="col-sm-2" style="border-right:1px solid #ccc" id="left">
+                <%- include ../public/left.ejs%>
+            </div>
+            <!-- 右侧详情栏 -->
+            <div class="col-sm-10">
+                <ol class="breadcrumb">
+                        <li>漫画管理</li>
+                        <li class="active">编辑漫画</li>
+                        <li class="pull-right">
+                            <div class="btn-group" style="cursor:pointer">
+                                <span class="dropdown-toggle" data-toggle="dropdown"><strong><%=session.manager.manager_name%></strong>
+                                    <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu" style="min-width:80px">
+                                    <li><a href="/users/logout">注销</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                </ol>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        编辑漫画
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">漫画名称</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="cartoon_name" placeholder="输入漫画名称" value="<%= result['cartoon']['cartoon_name']%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">漫画作者</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="cartoon_author" placeholder="输入作者" value="<%= result['cartoon']['author']%>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">漫画简介</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" rows="3" id="cartoon_desc"><%= result['cartoon']['cartoon_desc']%></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">漫画类别</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="cartoon_category">
+                                        <%for(var i = 0; i < result.categories.length;i++){%>
+                                        <option value="<%=result.categories[i]['_id']%>" <%= JSON.stringify(result.categories[i]['_id']) == JSON.stringify(result['cartoon']['cartoon_category']['_id']) ? 'selected':''%>><%=result.categories[i]['category_name']%></option>
+                                        <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label for="tag_name" class="col-sm-2 control-label">漫画标签</label>
+                                    <div class="col-sm-8">
+                                        <%for(var i = 0 ; i < result.tags.length;i++){%>
+                                            <button class="btn btn-<%=result.tags[i]['color']%>" style="margin-bottom:10px;">
+                                                <input type="checkbox" name="tag" value="<%=result.tags[i]['_id']%>" <%= result['checkTag'].indexOf(JSON.stringify(result.tags[i]['_id'])) > -1 ? 'checked':''%>/>
+                                                
+                                                <%=result.tags[i]['tag_name']%>
+                                                <!-- <%=result['checkTag']%> -->
+                                            </button>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">更新时间</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="update_time">
+                                        <option value="1" <%=result['cartoon']['cartoon_updateTime'] == 1? 'selected': ''%>>周一</option>
+                                        <option value="2" <%=result['cartoon']['cartoon_updateTime'] == 2? 'selected': ''%>>周二</option>
+                                        <option value="3" <%=result['cartoon']['cartoon_updateTime'] == 3? 'selected': ''%>>周三</option>
+                                        <option value="4" <%=result['cartoon']['cartoon_updateTime'] == 4? 'selected': ''%>>周四</option>
+                                        <option value="5" <%=result['cartoon']['cartoon_updateTime'] == 5? 'selected': ''%>>周五</option>
+                                        <option value="6" <%=result['cartoon']['cartoon_updateTime'] == 6? 'selected': ''%>>周六</option>
+                                        <option value="0" <%=result['cartoon']['cartoon_updateTime'] == 0? 'selected': ''%>>周日</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">漫画封面</label>
+                                <div class="col-sm-8" id="uploadImageContainer">
+                                        <input type="hidden" id="cartoon_cover">
+                                        <input type="hidden" id="cartoonId" value="<%=result['cartoon']['_id']%>">
+                                        <input id="upload" type="file">
+                                </div>
+                                <div class="col-sm-8" id="displayImageContainer">
+                                        <div class="btn15" style="width:300px;">
+                                            <img src="<%=result['cartoon']['cartoon_cover']%>" alt="">
+                                            <div class="ovrly"></div>
+                                            <div class="buttons">
+                                                <a href="javascript:void(0)" id="deleteImage" class="fa fa-link"></a>
+                                                <a href="javascript:void(0)" class="fa fa-search"></a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cartoon_showImg" class="col-sm-2 control-label">漫画海报</label>
+                                <div class="col-sm-8" id="uploadBillContainer">
+                                        <input type="hidden" id="cartoon_showImg_container">
+                                        <!-- <input type="hidden" id="cartoonId" value="<%=result['cartoon']['_id']%>"> -->
+                                        <input type="file" id="cartoon_showImg"/>
+                                        <div id="errorBlock"></div>
+                                </div>
+                                <div class="col-sm-8" id="displayBillContainer">
+                                    <div class="btn15" style="width:300px;">
+                                        <img src="<%=result['cartoon']['cartoon_showImg']%>" alt="">
+                                        <div class="ovrly"></div>
+                                        <div class="buttons">
+                                            <a href="javascript:void(0)" id="deleteBillImage" class="fa fa-link"></a>
+                                            <a href="javascript:void(0)" class="fa fa-search"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="tag_name" class="col-sm-2 control-label">是否完结</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="is_end">
+                                            <%if(result['cartoon']['cartoon_isEnd'] == true){%>
+                                                <option value="true" selected>是</option>
+                                                <option value="false">否</option>
+                                            <%}else{%>
+                                                <option value="false" selected>否</option>
+                                                <option value="true">是</option>
+                                            <%}%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <button type="submit" class="btn btn-default" id="updateCartoon">修改</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

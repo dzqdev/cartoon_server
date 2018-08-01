@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CSS3带动态阴影效果的3D图片翻转特效</title>
+	<script src='prefixfree.min.js'></script>
+	<style>
+	body{ background-color:#EFEFEF}
+	div.flip-3d { 
+	  perspective: 1200px; width: 30%; float: left;  
+	}
+	div.flip-3d figure { 
+	  position: relative; 
+	  transform-style: preserve-3d; 
+	  transition: 1s transform;
+	  font-size: 1.6rem; 
+	}
+	div.flip-3d figure img { 
+	  width: 100%; height: auto; 
+	}
+	div.flip-3d figure figcaption { 
+	  position: absolute; 
+	  width: 100%; height: 100%; top: 0; 
+	  transform: rotateY(.5turn) translateZ(1px); 
+	  background: rgba(255,255,255,0.9); 
+	  text-align: center; 
+	  padding-top: 45%; 
+	  opacity: 0.6; 
+	  transition: 1s .5s opacity; 
+	}
+	div.flip-3d:hover figure { transform: rotateY(.5turn); }
+	div.flip-3d:hover figure figcaption { opacity: 1; }
+	div.flip-3d figure:after { 
+	  content: " "; display: block;
+	  height: 8vw; width: 100%; 
+	  transform: rotateX(90deg); 
+	  background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%); 
+	}
+
+	@media screen and (max-width: 800px) { 
+	  div#flip-3d { perspective-origin: center top; }
+		div#flip-3d figure { 
+	    float: none; 
+	    width: 50%; 
+	    margin: 0 auto; 
+	    margin-bottom: 12vw; 
+	  }
+	  div.flip-3d figure figcaption{font-size: 0.8rem;}
+		div#flip-3d figure:last-child { display: none; }
+	}
+	</style>
+	<!--[if IE]>
+		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="jq22-container">
+		<header class="jq22-header bgcolor-11">
+			<h4>CSS3带动态阴影效果的3D图片翻转特效 <span>CSS 3D Image Flip Gallery With Dynamic Shadows</span></h4>
+			
+		</header>
+		<div class="jq22-content">
+		<div class="flip-3d">
+		  <figure>
+		    <img src="img/1.jpg" alt="">
+		    <figcaption>Mouse</figcaption>
+			</figure>
+		</div>
+		  
+		<div class="flip-3d">
+		  <figure>
+		    <img src="img/2.jpg" alt="">
+		    <figcaption>Irrigation rats</figcaption>
+		  </figure>
+		</div>
+		<div class="flip-3d">
+		  <figure>
+		    <img src="img/3.jpg" alt="">
+		    <figcaption>Rabbit</figcaption>
+		  </figure>
+		</div>
+		</div>
+		
+	</div>
+</body>
+</html>

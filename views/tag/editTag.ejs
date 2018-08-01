@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/lib/DialogJS/style/dialog.css">
+    <link type="text/css" rel="stylesheet" href="/lib/jQueryZdialog/css/zdialog.css" />
+    <link rel="stylesheet" href="/stylesheets/addTag.css"/>
+    <!-- script -->
+    <script src="/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 提示 -->
+    <script src="/lib/DialogJS/javascript/zepto.min.js"></script>
+    <script type="text/javascript" src="/lib/DialogJS/javascript/dialog.min.js"></script>
+    <script type="text/javascript" src="/lib/jQueryZdialog/js/zdialog.js"></script>
+    <script src="/javascripts/base.js"></script>
+    <script src="/javascripts/tag.js"></script>
+    <title>添加标签</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左侧菜单栏 -->
+            <div class="col-sm-2" style="border-right:1px solid #ccc" id="left">
+                <%- include ../public/left.ejs%>
+            </div>
+            <!-- 右侧详情栏 -->
+            <div class="col-sm-10">
+                <ol class="breadcrumb">
+                        <li>标签管理</li>
+                        <li class="active">修改标签</li>
+                        <li class="pull-right">
+                            <div class="btn-group" style="cursor:pointer">
+                                <span class="dropdown-toggle" data-toggle="dropdown"><strong><%=session.manager.manager_name%></strong>
+                                    <span class="caret"></span>
+                                </span>
+                                <ul class="dropdown-menu" role="menu" style="min-width:80px">
+                                    <li><a href="/users/logout">注销</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                </ol>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        修改标签
+                    </div>
+                    <div class="panel-body">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="tag_name" class="col-sm-2 control-label">标签名称</label>
+                                    <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="tag_name" placeholder="输入类别名称" value="<%=msg.doc.tag_name%>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="is_discard" class="col-sm-2 control-label">是否可用</label>
+                                    <div class="col-sm-8">
+                                            <select class="form-control" id="is_discard">
+                                                <%if(!msg.doc.is_discard){%>
+                                                    <option value="true" selected>是</option>
+                                                    <option value="false">否</option>
+                                                <%}else{%>
+                                                    <option value="true">是</option>
+                                                    <option value="false" selected>否</option>
+                                                <%}%>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <label for="color" class="col-sm-2 control-label">标签颜色</label>
+                                        <div class="col-sm-8 control-label">
+                                            <div class="item">
+                                                <%if(msg.doc.color == 'primary'){%>
+                                                    <input type="radio" name="color" value="primary" checked> 
+                                                <%}else{%>
+                                                    <input type="radio" name="color" value="primary"> 
+                                                <%}%>
+                                                <div class="option-primary"></div>
+                                            </div>
+                                            <div class="item">
+                                                    <%if(msg.doc.color == 'warning'){%>
+                                                        <input type="radio" name="color" value="warning" checked> 
+                                                    <%}else{%>
+                                                        <input type="radio" name="color" value="warning"> 
+                                                    <%}%>
+                                                    <div class="option-warning"></div>
+                                            </div>
+                                            <div class="item">
+                                                    <%if(msg.doc.color == 'success'){%>
+                                                        <input type="radio" name="color" value="success" checked> 
+                                                    <%}else{%>
+                                                        <input type="radio" name="color" value="success"> 
+                                                    <%}%> 
+                                                    <div class="option-success"></div>
+                                            </div>
+                                            <div class="item">
+                                                    <%if(msg.doc.color == 'info'){%>
+                                                        <input type="radio" name="color" value="info" checked> 
+                                                    <%}else{%>
+                                                        <input type="radio" name="color" value="info"> 
+                                                    <%}%> 
+                                                    <div class="option-info"></div>
+                                            </div>
+                                            <div class="item">
+                                                    <%if(msg.doc.color == 'danger'){%>
+                                                        <input type="radio" name="color" value="danger" checked> 
+                                                    <%}else{%>
+                                                        <input type="radio" name="color" value="danger"> 
+                                                    <%}%> 
+                                                    <div class="option-danger"></div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-8">
+                                        <input type="hidden" id="tag_id" value="<%=msg.doc._id%>">
+                                        <button type="submit" class="btn btn-default" id="update">修改</button>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

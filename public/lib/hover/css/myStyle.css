@@ -1,0 +1,6 @@
+.fa-delete {
+    background-image: url(../img/delete.svg);
+    background-size: 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
