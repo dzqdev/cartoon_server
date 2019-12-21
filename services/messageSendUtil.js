@@ -5,8 +5,8 @@
  */
 const SMSClient = require('@alicloud/sms-sdk')
 // ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
-const accessKeyId = 'LTAIgdc2tQIF9Klw'
-const secretAccessKey = 'dDFbTl6vt09FG4ylLsrZO5sNhGlwsE'
+const accessKeyId = ''
+const secretAccessKey = ''
 //初始化sms_client
 let smsClient = new SMSClient({accessKeyId, secretAccessKey})
 //发送短信
