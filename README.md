@@ -1,2 +1,10 @@
 后台管理系统，那时候不知道有github还有框架这个东西。自己用Bootstrap+一大堆网上的jquery插件搞出来的，模板好像用的是ejs。
 ![..](https://github.com/dzqdev/cartoon_server/blob/master/images/1.jpg)
+\![..](https://github.com/dzqdev/cartoon_server/blob/master/images/2.jpg)
+![..](https://github.com/dzqdev/cartoon_server/blob/master/images/3.jpg)
+![..](https://github.com/dzqdev/cartoon_server/blob/master/images/4.png)
+![..](https://github.com/dzqdev/cartoon_server/blob/master/images/5.png)
+![..](https://github.com/dzqdev/cartoon_server/blob/master/images/6.png)
+![..](https://github.com/dzqdev/cartoon_server/blob/master/images/7.png)
+![..](https://github.com/dzqdev/cartoon_server/blob/master/images/8.png)
+![..](https://github.com/dzqdev/cartoon_server/blob/master/images/9.png)
